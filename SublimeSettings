@@ -1,13 +1,18 @@
 {
-	"color_scheme": "Packages/Color Scheme - Default/iPlastic.tmTheme",
-	"draw_white_space": "all",
-	"font_face": "Mononoki",
-	"font_size": 12,
-	"ignored_packages":
-	[
-		"Vintage"
-	],
-	"tab_size": 2,
-	"translate_tabs_to_spaces": true,
-	"update_check": false
+    "color_scheme": "Packages/Color Scheme - Default/iPlastic.tmTheme",
+    "draw_white_space": "all",
+    "font_face": "Mononoki",
+    "font_size": 14,
+    "ignored_packages":
+    [
+        "Vintage"
+    ],
+    "preview_on_click": true,
+    "show_full_path": true,
+    "show_tab_close_buttons": false,
+    "tab_size": 4,
+    "translate_tabs_to_spaces": true,
+    "trim_automatic_white_space": true,
+    "word_wrap": true,
+    "update_check": false
 }
