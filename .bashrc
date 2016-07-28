@@ -44,6 +44,32 @@ join_images()
     convert $1 $2 +append "joined_$(date +%s).png"
 }
 
+select_model()
+{
+    mapfile -t devices < <(adb devices -l)
+    len=$(expr ${#devices[@]} - 1)
+    if ((len > 0)); then
+        echo "Found the following devices: "
+        for (( i=1; i<len; ++i));
+        do
+            echo "    [$i] ${devices[$i]}"
+        done
+
+        printf "Enter number to select device: "
+        read selection
+
+        if [[ $selection = *[[:digit:]]* ]]; then
+            export ANDROID_SERIAL=$(echo "${devices[$selection]}" | cut -d " " -f 1)
+            echo "Selected '$(echo ${devices[$selection]} | cut -d " " -f 5 | cut -d ":" -f 2)' as the target device"
+            echo "Export ANDROID_SERIAL=$ANDROID_SERIAL"
+        else
+            echo "Not a valid number: $selection"
+        fi
+    else
+        echo "No devices attached"
+    fi
+}
+
 alias gt='git status'
 alias ga='git add'
 alias gb='git branch'
@@ -52,3 +78,4 @@ alias cls=clear
 alias space='df -h | grep /usr/local'
 alias ji=join_images
 alias ss='take_screenshot'
+alias sd=select_model
