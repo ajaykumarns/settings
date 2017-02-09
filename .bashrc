@@ -69,6 +69,16 @@ select_model()
         echo "No devices attached"
     fi
 }
+export MYPS='$(echo -n "${PWD/#$HOME/~}" | awk -F "/" '"'"'{
+if (length($0) > 14) { if (NF>4) print $1 "/" $2 "/.../" $(NF-1) "/" $NF;
+else if (NF>3) print $1 "/" $2 "/.../" $NF;
+else print $1 "/.../" $NF; }
+else print $0;}'"'"')'
+PS1='$(selected_model_for_bash) \[\033[32m\]$(eval "echo ${MYPS}")\[\033[0m\]$ '
+#add bin folder to path
+if [[ -n $(echo "$PATH" | grep -q "$HOME/bin" && echo "yes") ]]; then
+    export PATH=$PATH:$HOME/bin
+fi
 
 alias gt='git status'
 alias ga='git add'
